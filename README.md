@@ -1,4 +1,5 @@
 # README
+http://localhost:3000/graphiql
 
 #### Create dummy links
 ```rb
