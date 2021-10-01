@@ -3,7 +3,7 @@ module Mutations
     # often we will need input types for specific mutation
     # in those cases we can define those input types in the mutation class itself
     class AuthProviderSignupData < Types::BaseInputObject
-      argument :credentials, Types::AuthProviderCredentialsInput, required: false
+      argument :credentials, Types::AuthProviderCredentialsInputType, required: false
     end
 
     argument :name, String, required: true

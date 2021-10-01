@@ -50,4 +50,18 @@ rails db:migrate
 ### Generate Graph QL UserType
 rails g graphql:object UserType id:ID! name:String! email:String!
 
-###
+### test create user mutation
+```rb
+mutation {
+  createUser(
+    name: "user3",
+  	authProvider: {
+      credentials: {
+        email: "email@test3.com",
+    		password: "password"}},
+  ) {
+    id
+    email
+  }
+}
+```
