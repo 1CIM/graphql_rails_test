@@ -45,3 +45,9 @@ mutation {
 ### Generate user files
 rails g model User name email password_digest
 rails db:migrate
+
+
+### Generate Graph QL UserType
+rails g graphql:object UserType id:ID! name:String! email:String!
+
+###
