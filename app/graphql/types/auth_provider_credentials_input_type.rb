@@ -1,5 +1,5 @@
 module Types
-  class AuthProviderCredentialsInputType < BaseInputObject
+  class AuthProviderCredentialsInputType < Types::BaseInputObject
     # The name usually interred by class name but can be overwritten
     graphql_name 'AUTH_PROVIDER_CREDENTIALS'
 
