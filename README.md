@@ -81,13 +81,32 @@ mutation {
 mutation {
   signinUser(
     credentials: {
-    	email: "user@email.com",
+    	email: "email@test3.com",
       password: "password"
   	}
   ) {
     token
     user {
       id
+    }
+  }
+}
+```
+
+### create link (signed in)
+
+```rb
+mutation {
+  createLink(
+    url: "https://adaptivelabs.se",
+    description: "Adaptive labs nordic website",
+  ) {
+    id
+    url
+    description
+    postedBy {
+      id
+      name
     }
   }
 }
