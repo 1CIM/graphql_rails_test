@@ -41,3 +41,7 @@ mutation {
   }
 }
 ```
+
+### Generate user files
+rails g model User name email password_digest
+rails db:migrate
