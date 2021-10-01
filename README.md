@@ -1,24 +1,113 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+http://localhost:3000/graphiql
 
-Things you may want to cover:
+#### Create dummy links
 
-* Ruby version
+```rb
+Link.create url: 'http://graphql.org/', description: 'The Best Query Language'
+Link.create url: 'http://dev.apollodata.com/', description: 'Awesome GraphQL Client'
+exit
+```
 
-* System dependencies
+#### Add to manifest
 
-* Configuration
+```rb
+//= link graphiql/rails/application.css
+//= link graphiql/rails/application.js
+```
 
-* Database creation
+#### Test queries on local host
 
-* Database initialization
+go to `http://localhost:3000/graphiql`
+For example write this in the left box.
 
-* How to run the test suite
+```rb
+{
+  allLinks {
+    id
+    url
+    description
+  }
+}
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Test Mutations on local host
 
-* Deployment instructions
+For example write this in the left box to create a new link
 
-* ...
+```rb
+mutation {
+  createLink(
+    url: "http://somelink.com",
+    description: "test on create link",
+  ) {
+    id
+    url
+    description
+  }
+}
+```
+
+### Generate user files
+
+rails g model User name email password_digest
+rails db:migrate
+
+### Generate Graph QL UserType
+
+rails g graphql:object UserType id:ID! name:String! email:String!
+
+### test create user mutation
+
+```rb
+mutation {
+  createUser(
+    name: "user3",
+  	authProvider: {
+      credentials: {
+        email: "email@test3.com",
+    		password: "password"}},
+  ) {
+    id
+    email
+  }
+}
+```
+
+### sign in user mutation
+
+```rb
+mutation {
+  signinUser(
+    credentials: {
+    	email: "email@test3.com",
+      password: "password"
+  	}
+  ) {
+    token
+    user {
+      id
+    }
+  }
+}
+```
+
+### create link (signed in)
+
+```rb
+mutation {
+  createLink(
+    url: "https://adaptivelabs.se",
+    description: "Adaptive labs nordic website",
+  ) {
+    id
+    url
+    description
+    postedBy {
+      id
+      name
+    }
+  }
+}
+```
